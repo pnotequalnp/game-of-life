@@ -1,0 +1,18 @@
+package conway
+
+authors = "Kevin Mullins"
+license = "ISC"
+
+modules
+  = Control.Comonad.Store.Representable
+  , Conway
+  , Data.Functor.Representable
+  , Main
+
+main = Main
+
+depends = comonad, contrib
+
+executable = conway
+
+sourcedir = "src"
