@@ -10,13 +10,8 @@ import Data.Vect.Extra
 
 %default total
 
-toVect : {n : Nat} -> AsList s -> Maybe (Vect n Char)
-toVect {n = 0} Nil = Just []
-toVect {n = S m} (c :: s) = (c ::) <$> toVect s
-toVect _ = Nothing
-
 parseLine : {n : Nat} -> String -> Maybe (List (Fin n))
-parseLine str = findIndices (== '#') <$> toVect (asList str)
+parseLine str = findIndices (== '#') <$> toVect n (unpack str)
 
 export
 parseGrid : String -> Maybe (DPair (Nat, Nat) (\(n, m) => Grid n m Bool))
