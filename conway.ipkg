@@ -6,7 +6,9 @@ license = "ISC"
 modules
   = Control.Comonad.Store.Representable
   , Conway
+  , Conway.Parse
   , Data.Functor.Representable
+  , Data.Vect.Extra
   , Main
 
 main = Main
