@@ -7,7 +7,6 @@ import Conway.Parse
 import Data.Fuel
 import Data.Functor.Representable
 import Data.Vect
-import System
 import System.File.ReadWrite
 import System.File.Virtual
 
@@ -30,11 +29,4 @@ main = do
   text <- fRead stdin forever
   case parseGrid text of
     Nothing => putStrLn "Invalid starting position"
-    Just ((n, m) ** grid) => loop conway grid
-  where
-    loop : {n : Nat} -> {m : Nat} -> Rule n m -> Grid n m Bool -> IO ()
-    loop r g = do
-      putStr "\ESC[2J"
-      putStr $ showGrid g
-      usleep 500000
-      loop r $ g =>> r
+    Just ((n, m) ** grid) => runLife conway grid forever

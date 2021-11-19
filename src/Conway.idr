@@ -2,10 +2,12 @@ module Conway
 
 import Control.Comonad
 import Control.Comonad.Store.Representable
+import Data.Fuel
 import Data.Functor.Representable
 import Data.List
 import Data.String
 import Data.Vect
+import System
 
 %default total
 
@@ -59,3 +61,12 @@ conway g =
 
     aliveCount : Nat
     aliveCount = length . filter id . experiment neighbors $ g
+
+public export
+runLife : {n : Nat} -> {m : Nat} -> Rule n m -> Grid n m Bool -> Fuel -> IO ()
+runLife _ _ Dry = pure ()
+runLife r g (More fuel) = do
+  putStr "\ESC[2J"
+  putStr $ showGrid g
+  usleep 500000
+  runLife r (g =>> r) fuel
