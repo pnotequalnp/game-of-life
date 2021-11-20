@@ -29,7 +29,7 @@ mkGrid coords = store @{Compose} (`elem` coords) (0, 0)
 
 public export
 showGrid : Grid n m Bool -> String
-showGrid (MkStore xss _) = unlines . map (foldMap (bool "." "#")) . toList $ xss
+showGrid (MkStore xss _) = unlines . map (foldMap (bool "  " "██")) . toList $ xss
   where
     bool : a -> a -> Bool -> a
     bool x y = \case
