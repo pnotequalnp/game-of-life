@@ -20,7 +20,6 @@ fRead file fuel = foldMap id <$> go file fuel
     go file (More fuel) = do
       False <- fEOF file | _ => pure []
       Right str <- fGetLine file | _ => pure []
-      putStrLn "Hello"
       (str ::) <$> go file fuel
 
 covering
