@@ -13,7 +13,7 @@ modules
 
 main = Main
 
-depends = comonad, contrib
+depends = comonad
 
 executable = conway
 
